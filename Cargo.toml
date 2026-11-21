@@ -1,0 +1,11 @@
+[package]
+name = "space_game"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+raylib = "6.0"
+
+# My custom libraries
+config = { path = "./src/config" }
+
