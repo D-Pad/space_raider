@@ -1,0 +1,4 @@
+    Checking game v0.1.0 (/usr/local/software/rust/space_game/game)
+error: could not compile `game` (bin "game" test) due to 7 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `game` (bin "game") due to 7 previous errors
