@@ -16,7 +16,6 @@ impl GraphicSettings {
 }
 
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -28,4 +27,5 @@ mod tests {
         assert_eq!(config.screen_height, 1080);
     }
 }
+
 

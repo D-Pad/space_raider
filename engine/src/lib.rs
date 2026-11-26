@@ -1,67 +1,46 @@
+pub mod graphics;
+
 use raylib::prelude::*;
-pub mod config;
-use config::GraphicSettings;
-
-
-struct GameState {
-    title: String,
-    graphic_settings: GraphicSettings, 
-}
-
-impl GameState {
-    
-    fn init() -> Self {
-
-        let graphic_settings = GraphicSettings::default();
-        Self {
-            title: String::from("Cyber Raid"), 
-            graphic_settings 
-        }
-
-    }
-
-}
+use graphics::GraphicSettings;
 
 
 struct GameEngine {
     rl_handle: RaylibHandle,
     rl_thread: RaylibThread,
-    game_state: GameState
 }
 
 impl GameEngine {
     
-    fn new() -> Self {
-
-        let game_state = GameState::init();
+    fn new(window_title: &str, graphics: GraphicSettings) -> Self {
 
         let (rl_handle, rl_thread) = raylib::init()
             .size( 
-                game_state.graphic_settings.screen_width, 
-                game_state.graphic_settings.screen_height)
-            .title(&game_state.title)
+                graphics.screen_width, 
+                graphics.screen_height)
+            .title(window_title)
             .build();
         
         Self {
             rl_handle,
             rl_thread,
-            game_state 
         }
+    
     }
 
 }
 
 
-pub fn run() {
-  
-    let mut engine = GameEngine::new();
+pub fn run(window_title: &str, graphic_settings: GraphicSettings) {
+ 
+    let mut engine = GameEngine::new(window_title, graphic_settings);
+    let t = &engine.rl_thread;
 
     while !engine.rl_handle.window_should_close() {
        
-        let t = &engine.rl_thread;
         let mut d = engine.rl_handle.begin_drawing(t);
+
         d.clear_background(Color::BLACK);
-        d.draw_text(&engine.game_state.title, 12, 12, 20, Color::WHITE);
+        d.draw_text(window_title, 12, 12, 20, Color::WHITE);
     
     }
 
