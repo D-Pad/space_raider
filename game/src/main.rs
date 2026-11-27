@@ -1,4 +1,14 @@
-use engine::{graphics::GraphicSettings, run}; 
+use engine::{
+    GameEngine, 
+    graphics::{
+        GraphicSettings, 
+        colors::Color
+    }
+}; 
+
+
+// Constant values for game meta data
+const GAME_TITLE: &str = "Space Raider";
 
 
 struct MetaData {
@@ -16,14 +26,23 @@ impl MetaData {
 }
 
 
+// ------------------------- Main game loop -------------------------------- //
 fn main() {
-    
-    const GAME_TITLE: &str = "Space Raider";
-    let meta_data = MetaData::new(GAME_TITLE);
    
+    // Initialize app settings and game engine 
+    let meta_data = MetaData::new(GAME_TITLE);
     let graphic_settings = GraphicSettings::default();
+    let mut engine = GameEngine::new(meta_data.title, graphic_settings);
+    let t = &engine.rl_thread;
 
-    run(meta_data.title, graphic_settings);
+    while !engine.rl_handle.window_should_close() {
+       
+        let mut d = engine.rl_handle.begin_drawing(t);
+
+        // d.clear_background(Color::BLACK);
+        // d.draw_text(meta_data.title, 12, 12, 20, Color::WHITE);
+    
+    }
 
 }
 
