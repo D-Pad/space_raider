@@ -10,7 +10,7 @@ use crate::scenes::GameMode;
 
 // ---------------------------- META DATA STRUCT --------------------------- //
 struct MetaData {
-    title: &'static str,
+    pub title: &'static str,
 }
 
 impl MetaData {
@@ -20,7 +20,6 @@ impl MetaData {
             title
         } 
     }
-
 }
 
 
@@ -30,6 +29,7 @@ pub struct GameState {
     // player state, etc.
     pub engine: GameEngine,
     pub mode: GameMode,
+    pub meta: MetaData,
 }
 
 impl GameState {
@@ -44,20 +44,15 @@ impl GameState {
 
         Self {
             engine,
-            mode
+            mode,
+            meta
         }
 
     }
 
     pub fn run(mut self) {
 
-        let thread = &self.engine.rl_thread;
-
         while !self.engine.rl_handle.window_should_close() {
-           
-            let mut draw_thread = self.engine.rl_handle.begin_drawing(thread);
-            // draw_thread.clear_background(Color::BLACK);
-            // draw_thread.draw_text(meta_data.title, 12, 12, 20, Color::WHITE);
         
         }
 
