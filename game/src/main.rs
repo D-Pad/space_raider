@@ -1,6 +1,7 @@
 
 
 mod state_mgmt;
+mod scenes;
 use state_mgmt::*;
 
 
@@ -12,8 +13,8 @@ const GAME_TITLE: &str = "Space Raider";
 // ------------------------- Main game loop -------------------------------- //
 fn main() {
 
-    let state = game_state::GameState::new(GAME_TITLE);
-    state.run();
+    let game = game_state::GameState::new(GAME_TITLE);
+    game.run();
 
 }
 
