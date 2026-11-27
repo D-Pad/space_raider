@@ -1,17 +1,21 @@
+// Local imports
 pub mod graphics;
+pub mod rendering;
 
+use graphics::settings::GraphicSettings;
+
+// Third party imports
 use raylib::prelude::*;
-use graphics::GraphicSettings;
 
 
-struct GameEngine {
-    rl_handle: RaylibHandle,
-    rl_thread: RaylibThread,
+pub struct GameEngine {
+    pub rl_handle: RaylibHandle,
+    pub rl_thread: RaylibThread,
 }
 
 impl GameEngine {
     
-    fn new(window_title: &str, graphics: GraphicSettings) -> Self {
+    pub fn new(window_title: &str, graphics: GraphicSettings) -> Self {
 
         let (rl_handle, rl_thread) = raylib::init()
             .size( 
@@ -24,36 +28,6 @@ impl GameEngine {
             rl_handle,
             rl_thread,
         }
-    
-    }
-
-}
-
-
-pub fn run(window_title: &str, graphic_settings: GraphicSettings) {
- 
-    let mut engine = GameEngine::new(window_title, graphic_settings);
-    let t = &engine.rl_thread;
-
-    while !engine.rl_handle.window_should_close() {
-       
-        let mut d = engine.rl_handle.begin_drawing(t);
-
-        d.clear_background(Color::BLACK);
-        d.draw_text(window_title, 12, 12, 20, Color::WHITE);
-    
-    }
-
-}
-
-
-#[cfg(test)]
-mod tests {
-    
-    use super::*;
-
-    #[test]
-    fn it_works() {
     
     }
 
