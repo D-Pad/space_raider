@@ -1,5 +1,5 @@
-use crate::game_state::GameState;
-use engine::graphics::colors::Color;
+use crate::state_mgmt::game_state::GameState;
+use engine::rendering::start_new_scene;
 
 
 pub enum GameMode {
@@ -8,21 +8,25 @@ pub enum GameMode {
 }
 
 
-pub fn draw_scene(mut game_state: GameState) {
-
-    let thread = &game_state.engine.rl_thread;
-    let mut draw_thread = game_state.engine.rl_handle.begin_drawing(thread);
-
-    draw_thread.clear_background(Color::BLACK.to_rgb());
+pub fn draw_scene(game_state: &mut GameState) { 
 
     match game_state.mode {
 
         GameMode::MainMenu => {
-            draw_thread.draw_text(game_state.meta.title, 12, 12, 20, Color::WHITE);
+            
+            // draw_thread.draw_text(game_state.meta.title, 12, 12, 20, Color::WHITE);
+        
         },
+        
         GameMode::GamePlay => {}
 
-    }
+    };
+
+    // Start drawing a new scene. This function call only clears the background
+    // and starts a new frame. More logic is needed to actually draw the scene.
+    start_new_scene(&mut game_state.engine);
+
+    // Start drawing objects here
 
 }
 

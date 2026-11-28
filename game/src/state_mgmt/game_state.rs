@@ -1,11 +1,11 @@
 use engine::{
-    GameEngine, 
-    graphics::{
-        settings::GraphicSettings,
-    }
+    GameEngine, graphics::settings::GraphicSettings, rendering::start_new_scene
 }; 
 
-use crate::scenes::GameMode;
+use crate::scenes::{ 
+    GameMode, 
+    draw_scene 
+};
 
 
 // ---------------------------- META DATA STRUCT --------------------------- //
@@ -53,7 +53,9 @@ impl GameState {
     pub fn run(mut self) {
 
         while !self.engine.rl_handle.window_should_close() {
-        
+
+            draw_scene(&mut self); 
+
         }
 
     }

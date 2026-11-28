@@ -75,7 +75,7 @@ impl ColorRgba {
         r: 0, g: 0, b: 255, a: 255
     };
 
-    pub fn color_to_raylib_color(self) -> RaylibColor {
+    pub fn to_raylib_color(self) -> RaylibColor {
         RaylibColor {
             r: self.r,
             g: self.g,
